@@ -23,24 +23,27 @@ const Hearder = () => {
           <ul className="flex justify-center items-center space-x-10">
             <li
               onClick={() => navigate("/")}
-              className={`py-3 cursor-pointer text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${
-                pathMatchRoute("/") && "text-black border-b-red-500"
+              className={`py-3 cursor-pointer text-sm font-semibold text-gray-400  ${
+                pathMatchRoute("/") &&
+                "text-black border-b-[3px] border-b-red-500"
               } `}
             >
               Home
             </li>
             <li
               onClick={() => navigate("/offers")}
-              className={`py-3 cursor-pointer text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${
-                pathMatchRoute("/offers") && "text-black border-b-red-500"
+              className={`py-3 cursor-pointer text-sm font-semibold text-gray-400   ${
+                pathMatchRoute("/offers") &&
+                "text-black border-b-[3px] border-b-red-500"
               } `}
             >
               Offers
             </li>
             <li
               onClick={() => navigate("/sign-in")}
-              className={`py-3 cursor-pointer text-sm font-semibold text-gray-400 border-b-[3px] border-b-transparent ${
-                pathMatchRoute("/sign-in") && "text-black border-b-red-500"
+              className={`py-3 cursor-pointer text-sm font-semibold text-gray-400  ${
+                pathMatchRoute("/sign-in") &&
+                "text-black border-b-[3px] border-b-red-500"
               } `}
             >
               Sign in
