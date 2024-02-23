@@ -55,7 +55,7 @@ const Hearder = () => {
             <li
               onClick={() => navigate("/profile")}
               className={`py-3 cursor-pointer text-sm font-semibold text-gray-400 hover:text-pink-600 ${
-                (pathMatchRoute("/sign-in") || pathMatchRoute("/sign-in")) &&
+                (pathMatchRoute("/sign-in") || pathMatchRoute("/profile")) &&
                 "text-black border-b-[3px] border-b-red-500"
               } `}
             >

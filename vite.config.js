@@ -8,5 +8,6 @@ export default defineConfig({
       "Cross-Origin-Opener-Policy": "unsafe-none",
     },
   },
+
   plugins: [react()],
 });
