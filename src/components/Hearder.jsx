@@ -22,7 +22,7 @@ const Hearder = () => {
     }
   }
   return (
-    <div className="bg-white border-b shadow-sm sticky top-0 z-50">
+    <div className="bg-white border-b shadow-sm sticky top-0 z-40">
       <header className="flex justify-between px-3 mx-auto max-w-6xl items-center">
         <div>
           <img
