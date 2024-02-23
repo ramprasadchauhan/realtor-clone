@@ -1,6 +1,7 @@
 import { getAuth, updateProfile } from "firebase/auth";
 import {
   collection,
+  deleteDoc,
   doc,
   getDocs,
   orderBy,
@@ -76,6 +77,20 @@ const Profile = () => {
     };
     fetchUserListings();
   }, [auth.currentUser.uid]);
+
+  const onDelete = async (listingID) => {
+    if (window.confirm("Are you sure , you want to delete?")) {
+      await deleteDoc(doc(db, "listings", listingID));
+      const updatedListings = listings.filter(
+        (listing) => listing.id !== listingID
+      );
+      setListings(updatedListings);
+      toast.success("Successfully deleted listing");
+    }
+  };
+  const onEdit = (listingID) => {
+    navigate(`/edit-listing/${listingID}`);
+  };
   return (
     <>
       <section className="max-w-6xl mx-auto flex justify-center items-center flex-col">
@@ -144,12 +159,14 @@ const Profile = () => {
             <h2 className="text-2xl text-center mb-6 font-semibold">
               My Listings
             </h2>
-            <ul className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 my-6 mx-auto pt-4">
+            <ul className="sm:grid sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 2xl:grid-cols-5 my-6 flex flex-col justify-center items-center pt-4">
               {listings.map((listing) => (
                 <ListingItem
                   key={listing.id}
                   id={listing.id}
                   listing={listing.data}
+                  onDelete={() => onDelete(listing.id)}
+                  onEdit={() => onEdit(listing.id)}
                 />
               ))}
             </ul>
