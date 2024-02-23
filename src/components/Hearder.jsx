@@ -1,8 +1,21 @@
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { getAuth, onAuthStateChanged } from "firebase/auth";
 
 const Hearder = () => {
+  const [pageState, setPageState] = useState("Sign in");
   const location = useLocation();
   const navigate = useNavigate();
+  const auth = getAuth();
+  useEffect(() => {
+    onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setPageState("Profile");
+      } else {
+        setPageState("Sign in");
+      }
+    });
+  }, [auth]);
   function pathMatchRoute(route) {
     if (route === location.pathname) {
       return true;
@@ -40,13 +53,13 @@ const Hearder = () => {
               Offers
             </li>
             <li
-              onClick={() => navigate("/sign-in")}
+              onClick={() => navigate("/profile")}
               className={`py-3 cursor-pointer text-sm font-semibold text-gray-400 hover:text-pink-600 ${
-                pathMatchRoute("/sign-in") &&
+                (pathMatchRoute("/sign-in") || pathMatchRoute("/sign-in")) &&
                 "text-black border-b-[3px] border-b-red-500"
               } `}
             >
-              Sign in
+              {pageState}
             </li>
           </ul>
         </div>
