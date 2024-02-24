@@ -38,11 +38,15 @@ const ListingItem = ({ listing, id, onDelete, onEdit }) => {
           </p>
           <div className="flex items-center mt-[10px] space-x-3">
             <div className="flex items-center space-x-1">
-              <p>{listing.badrooms > 1 ? `${listing.badrooms}  Beds` : "1"} </p>
+              <p>
+                {listing.badrooms > 1 ? `${listing.badrooms}  Beds` : "1 Bed"}{" "}
+              </p>
             </div>
             <div>
               <p>
-                {listing.bathrooms > 1 ? `${listing.bathrooms}  Bath` : "1"}
+                {listing.bathrooms > 1
+                  ? `${listing.bathrooms}  Bath`
+                  : "1 Bath"}
               </p>
             </div>
           </div>
