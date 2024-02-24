@@ -31,7 +31,7 @@ const Listing = () => {
   const [loading, setLoading] = useState(true);
   const [contactLandlord, setContactLandlord] = useState(false);
   const [shareLinkeCopied, setShareLinkCopied] = useState(false);
-  SwiperCore.use(Autoplay, Navigation, Pagination);
+  SwiperCore.use([Autoplay, Navigation, Pagination]);
   useEffect(() => {
     const fetchListing = async () => {
       const docRef = doc(db, "listings", params.listingId);
