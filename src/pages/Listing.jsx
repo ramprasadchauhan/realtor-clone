@@ -20,11 +20,15 @@ import SwiperCore, {
   Pagination,
 } from "swiper";
 import "swiper/css/bundle";
+import { getAuth } from "firebase/auth";
+import Contact from "../components/Contact";
 
 const Listing = () => {
   const params = useParams();
+  const auth = getAuth();
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [contactLandlord, setContactLandlord] = useState(false);
   const [shareLinkeCopied, setShareLinkCopied] = useState(false);
   SwiperCore.use(Autoplay, Navigation, Pagination);
   useEffect(() => {
@@ -130,6 +134,19 @@ const Listing = () => {
               {listing.furnished ? "Furnished" : "Not Furnished"}
             </li>
           </ul>
+          {listing.userRef !== auth.currentUser?.uid && !contactLandlord && (
+            <div className="mt-6">
+              <button
+                onClick={() => setContactLandlord(true)}
+                className="px-7 py-3 bg-blue-600 text-white font-medium text-sm uppercase rounded-md shadow-md hover:shadow-lg hover:bg-blue-700 focus:bg-blue-700 w-full transition duration-150 ease-in-out"
+              >
+                Contect Landloard
+              </button>
+            </div>
+          )}
+          {contactLandlord && (
+            <Contact userRef={listing.userRef} listing={listing} />
+          )}
         </div>
         <div className="bg-blue-300 w-full h-[200px] z-10 overflow-x-hidden lg:h-[400px]"></div>
       </div>
