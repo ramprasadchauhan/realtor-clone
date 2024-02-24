@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useState } from "react";
 import Spinner from "../components/Spinner";
 import { toast } from "react-toastify";
